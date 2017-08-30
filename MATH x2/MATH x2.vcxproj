@@ -86,6 +86,7 @@
     <ClInclude Include="header.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Win32Project1.rc" />

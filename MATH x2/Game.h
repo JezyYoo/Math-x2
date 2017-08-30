@@ -17,7 +17,7 @@ public:
 	HWND hDialog, hFirst, hSecond, hResult, hSign, hNext,hTrue,hFalse,hProgress,hTimeLeft,hImg;
 	int act;
 	int nCounter;
-	const int prStep = 30;
+	const int prStep = 30; // count of seconds
 	
 	void Plus();
 	void Minus();

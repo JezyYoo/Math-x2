@@ -121,6 +121,7 @@ void Game::Cls_OnClose(HWND hwnd)
 
 HBITMAP bitImg;
 HINSTANCE hInst;
+
 BOOL Game::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 {
 	hDialog = hwnd;
@@ -140,6 +141,9 @@ BOOL Game::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	SetTimer(hDialog, 1, 1000, 0);
 	nCounter = prStep;
 
+	countOfTrue = 0;
+	countOfFalse = 0;
+
 	hInst = GetModuleHandle(0);
 	bitImg = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
 	SendMessage(hImg, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bitImg); //отрисовать
@@ -155,6 +159,7 @@ BOOL Game::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	else if (act == DIVIDE)
 		Divide();
 
+
 	return TRUE;
 }
 void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
@@ -163,79 +168,90 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	{
 		bool check = true;
 		TCHAR sign[100];
-		if (act == PLUS)
+
+		if (SendMessage(hResult, EM_LINELENGTH, 0, 0) == 0)
 		{
-			if (check == CheckRes(chislo1, chislo2, PLUS))
-			{
-				countOfTrue++;
-				_itot(countOfTrue, sign, 10);
-				SetWindowText(hTrue, sign);
-			}
-			else
-			{
-				countOfFalse++;
-				_itot(countOfFalse, sign, 10);
-				SetWindowText(hFalse, sign);
-			}
-				
-			Plus();
+			return;
 		}
-		else if (act == MINUS)
+		else
 		{
-			if (check == CheckRes(chislo1, chislo2, MINUS))
+
+			if (act == PLUS)
 			{
-				countOfTrue++;
-				_itot(countOfTrue, sign, 10);
-				SetWindowText(hTrue, sign);
+				if (check == CheckRes(chislo1, chislo2, PLUS))
+				{
+					countOfTrue++;
+					_itot(countOfTrue, sign, 10);
+					SetWindowText(hTrue, sign);
+				}
+				else
+				{
+					countOfFalse++;
+					_itot(countOfFalse, sign, 10);
+					SetWindowText(hFalse, sign);
+				}
+
+				Plus();
 			}
-			else
+			else if (act == MINUS)
 			{
-				countOfFalse++;
-				_itot(countOfFalse, sign, 10);
-				SetWindowText(hFalse, sign);
+				if (check == CheckRes(chislo1, chislo2, MINUS))
+				{
+					countOfTrue++;
+					_itot(countOfTrue, sign, 10);
+					SetWindowText(hTrue, sign);
+				}
+				else
+				{
+					countOfFalse++;
+					_itot(countOfFalse, sign, 10);
+					SetWindowText(hFalse, sign);
+				}
+				Minus();
 			}
-			Minus();
+			else if (act == MULT)
+			{
+				if (check == CheckRes(chislo1, chislo2, MULT))
+				{
+					countOfTrue++;
+					_itot(countOfTrue, sign, 10);
+					SetWindowText(hTrue, sign);
+				}
+				else
+				{
+					countOfFalse++;
+					_itot(countOfFalse, sign, 10);
+					SetWindowText(hFalse, sign);
+				}
+				Multiply();
+			}
+			else if (act == DIVIDE)
+			{
+				if (check == CheckRes(chislo1, chislo2, DIVIDE))
+				{
+					countOfTrue++;
+					_itot(countOfTrue, sign, 10);
+					SetWindowText(hTrue, sign);
+				}
+				else
+				{
+					countOfFalse++;
+					_itot(countOfFalse, sign, 10);
+					SetWindowText(hFalse, sign);
+				}
+				Divide();
+			}
+			SetWindowText(hResult, TEXT(""));
 		}
-		else if (act == MULT)
-		{
-			if (check == CheckRes(chislo1, chislo2, MULT))
-			{
-				countOfTrue++;
-				_itot(countOfTrue, sign, 10);
-				SetWindowText(hTrue, sign);
-			}
-			else
-			{
-				countOfFalse++;
-				_itot(countOfFalse, sign, 10);
-				SetWindowText(hFalse, sign);
-			}
-			Multiply();
-		}
-		else if (act == DIVIDE)
-		{
-			if (check == CheckRes(chislo1, chislo2, DIVIDE))
-			{
-				countOfTrue++;
-				_itot(countOfTrue, sign, 10);
-				SetWindowText(hTrue, sign);
-			}
-			else
-			{
-				countOfFalse++;
-				_itot(countOfFalse, sign, 10);
-				SetWindowText(hFalse, sign);
-			}
-			Divide();
-		}
-		SetWindowText(hResult, TEXT(""));
 	}
+
 }
 TCHAR timeL[100];
 void Game::Cls_OnTimer(HWND hwnd, UINT id)
 {
 	SetFocus(hResult);
 	nCounter-- ;
+
 	if (nCounter == 5)
 	{
 		SendMessage(hProgress, PBM_SETBARCOLOR, 0, LPARAM(RGB(255, 0, 0)));

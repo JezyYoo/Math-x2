@@ -38,8 +38,7 @@ void Math::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	switch (id)
 	{
 	case START:
-		Game dlg;
-		dlg.act = SendMessage(hAct, CB_GETCURSEL, 0, 0);
+		dlg.act = SendMessage(hAct, CB_GETCURSEL, 0, 0); ///get type of operation(+,-,*,/)
 		if (dlg.act == -1)
 		{
 			break;
