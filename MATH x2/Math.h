@@ -1,6 +1,8 @@
 #pragma once
 #include "header.h"
 
+
+
 class Math
 {
 public:
@@ -11,5 +13,9 @@ public:
 	BOOL Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam);
 	void Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify);
 	void Cls_OnClose(HWND hwnd);
-	HWND hDialog,hEasy,hMid,hHard,hAct;
+	HWND hDialog,hEasy,hMid,hHard,hAct,hLS_mode,hLS_true,hLS_false,hLS_act,hName;
+	static TCHAR ls_mode[100],ls_act[100],ls_name[100];
+	static int ls_true, ls_false;
+	static void LoadFromFile();
+	static vector<wstring> score;
 };
