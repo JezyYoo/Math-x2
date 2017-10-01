@@ -3,6 +3,7 @@
 
 Game* Game::ptr = NULL;
 Math m_dlg;
+TCHAR timeL[100];
 Game::Game(void)
 {
 	ptr = this;
@@ -71,11 +72,11 @@ void Game::eMultiply()
 {
 	srand(time(NULL));
 	TCHAR tchislo[100];
-	chislo1 = rand() % (20 - eMin + 1) + eMin;
+	chislo1 = rand() % (20 - 2 + 1) + 2;
 	_itot(chislo1, tchislo, 10);
 	SetWindowText(hFirst, tchislo);
 
-	chislo2 = rand() % (9 - 1 + 1) + 1;
+	chislo2 = rand() % (9 - 2 + 1) + 2;
 	_itot(chislo2, tchislo, 10);
 	SetWindowText(hSecond, tchislo);
 
@@ -144,11 +145,11 @@ void Game::haMultiply()
 {
 	srand(time(NULL));
 	TCHAR tchislo[100];
-	chislo1 = rand() % (eMax - eMin + 1) + eMin;
+	chislo1 = rand() % (eMax - 2 + 1) + 2;
 	_itot(chislo1, tchislo, 10);
 	SetWindowText(hFirst, tchislo);
 
-	chislo2 = rand() % (9 - 1 + 1) + 1;
+	chislo2 = rand() % (9 - 2 + 1) + 2;
 	_itot(chislo2, tchislo, 10);
 	SetWindowText(hSecond, tchislo);
 
@@ -184,6 +185,23 @@ void Game::haDivide()
 
 	SetWindowText(hSign, TEXT("/"));
 }
+void Game::AddTwoSec()
+{
+	SecAnim();
+	nCounter += 2;
+	total_play_time += 2;
+	curSec -= 2;
+	_itot(nCounter, timeL, 10);
+	SetWindowText(hTimeLeft, timeL);
+	SendMessage(hProgress, PBM_SETPOS, curSec, 0);
+	
+}
+void Game::SecAnim()
+{
+	SendMessage(hSecNotif, WM_SETTEXT, 0, LPARAM(TEXT("+2 sec")));
+	SetTimer(hDialog, 2, 1000, 0);
+	
+}
 
 void Game::Cls_OnClose(HWND hwnd)
 {
@@ -218,19 +236,21 @@ BOOL Game::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	hFalse = GetDlgItem(hwnd, FALSE_COUNT);
 	hProgress = GetDlgItem(hwnd, PROGRESS);
 	hTimeLeft = GetDlgItem(hwnd, TIME_LEFT);
+	hSecNotif = GetDlgItem(hwnd, TWO_SEC);
 
 	SendMessage(hProgress, PBM_SETRANGE, 0, MAKELPARAM(0, prStep));
 	SendMessage(hProgress, PBM_SETSTEP, (WPARAM)1,0);
 	SendMessage(hProgress, PBM_SETBARCOLOR, 0, LPARAM(RGB(0, 255, 0)));
 	SetTimer(hDialog, 1, 1000, 0);
 	nCounter = prStep;
+	total_play_time = prStep;
 
 	countOfTrue = 0;
 	countOfFalse = 0;
 
-	hInst = GetModuleHandle(0);
-	bitImg = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
-	SendMessage(hImg, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bitImg); //отрисовать
+	//hInst = GetModuleHandle(0);
+	//bitImg = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_BITMAP1));
+	//SendMessage(hImg, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bitImg); //отрисовать
 
 	
 	if (dificult == easy)
@@ -279,6 +299,7 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 						countOfTrue++;
 						_itot(countOfTrue, sign, 10);
 						SetWindowText(hTrue, sign);
+						AddTwoSec();
 					}
 					else
 					{
@@ -298,6 +319,7 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 						countOfTrue++;
 						_itot(countOfTrue, sign, 10);
 						SetWindowText(hTrue, sign);
+						AddTwoSec();
 					}
 					else
 					{
@@ -317,6 +339,7 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 						countOfTrue++;
 						_itot(countOfTrue, sign, 10);
 						SetWindowText(hTrue, sign);
+						AddTwoSec();
 					}
 					else
 					{
@@ -336,6 +359,7 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 						countOfTrue++;
 						_itot(countOfTrue, sign, 10);
 						SetWindowText(hTrue, sign);
+						AddTwoSec();
 					}
 					else
 					{
@@ -351,56 +375,72 @@ void Game::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				SetWindowText(hResult, TEXT(""));
 			}
 		}
+		
 }
-TCHAR timeL[100];
+u_int bonus = 0;
 void Game::Cls_OnTimer(HWND hwnd, UINT id)
 {
-	SetFocus(hResult);
-	nCounter-- ;
-
-	if (nCounter == 5)
+	if (id == 1)
 	{
-		SendMessage(hProgress, PBM_SETBARCOLOR, 0, LPARAM(RGB(255, 0, 0)));
-	}
-	_itot(nCounter, timeL, 10);
-	SetWindowText(hTimeLeft, timeL);
-	SendMessage(hProgress, PBM_STEPIT, 0, 0); // Изменение текущей позиции индикатора путём прибавления шага
+		SetFocus(hResult);
+		nCounter--;
+		curSec++;
 
-	if (nCounter == 0)
+		if (nCounter == 5)
+		{
+			SendMessage(hProgress, PBM_SETBARCOLOR, 0, LPARAM(RGB(255, 0, 0)));
+		}
+		_itot(nCounter, timeL, 10);
+		SetWindowText(hTimeLeft, timeL);
+		SendMessage(hProgress, PBM_STEPIT, 0, 0); // Изменение текущей позиции индикатора путём прибавления шага
+
+		if (nCounter == 0)
+		{
+			KillTimer(hwnd, 1);
+			SendMessage(hProgress, PBM_SETSTEP, 0, 0); // Установка шага приращения  индикатора 
+			/*Button_Enable(hStart, FALSE);*/
+			SetWindowText(hwnd, TEXT("GAME OVER"));
+			EnableWindow(hNext, FALSE);
+			EnableWindow(hResult, FALSE);
+			SetWindowText(hFirst, TEXT(""));
+			SetWindowText(hSecond, TEXT(""));
+
+			m_dlg.ls_true = countOfTrue;
+			m_dlg.ls_false = countOfFalse;
+			m_dlg.ls_time = total_play_time;
+
+			if (dificult == easy)
+			{
+				_tcscpy(m_dlg.ls_mode, TEXT("Easy"));
+
+			}
+			else if (dificult == hard)
+			{
+				_tcscpy(m_dlg.ls_mode, TEXT("Hard"));
+
+			}
+			if (act == PLUS)
+				_tcscpy(m_dlg.ls_act, TEXT("Plus"));
+			else if (act == MINUS)
+				_tcscpy(m_dlg.ls_act, TEXT("Minus"));
+			else if (act == MULT)
+				_tcscpy(m_dlg.ls_act, TEXT("Multiply"));
+			else if (act == DIVIDE)
+				_tcscpy(m_dlg.ls_act, TEXT("Divide"));
+
+			SaveScore();
+		}
+	}
+	if (id == 2)
 	{
-		KillTimer(hwnd, 1);
-		SendMessage(hProgress, PBM_SETSTEP, 0, 0); // Установка шага приращения  индикатора 
-		/*Button_Enable(hStart, FALSE);*/
-		SetWindowText(hwnd, TEXT("GAME OVER"));
-		EnableWindow(hNext, FALSE);
-		EnableWindow(hResult, FALSE); 
-		SetWindowText(hFirst, TEXT(""));
-		SetWindowText(hSecond, TEXT(""));
-
-		m_dlg.ls_true = countOfTrue;
-		m_dlg.ls_false = countOfFalse;
-		if (dificult == easy)
+		bonus++;
+		if (bonus == 1)
 		{
-			_tcscpy(m_dlg.ls_mode, TEXT("Easy"));
-			
+			KillTimer(hDialog, 2);
+			SendMessage(hSecNotif, WM_SETTEXT, 0, LPARAM(TEXT("")));
+			bonus = 0;
 		}
-		else if (dificult == hard)
-		{
-			_tcscpy(m_dlg.ls_mode, TEXT("Hard"));
-
-		}
-		if (act == PLUS)
-			_tcscpy(m_dlg.ls_act, TEXT("Plus"));
-		else if (act == MINUS)
-			_tcscpy(m_dlg.ls_act, TEXT("Minus"));
-		else if (act == MULT)
-			_tcscpy(m_dlg.ls_act, TEXT("Multiply"));
-		else if (act == DIVIDE)
-			_tcscpy(m_dlg.ls_act, TEXT("Divide"));
-		
-		SaveScore();
 	}
-
 }
 
 BOOL CALLBACK Game::DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

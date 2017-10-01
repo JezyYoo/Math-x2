@@ -1,3 +1,14 @@
   эщкере		Plus		Easy		0		0
   ale		Plus		Easy		0		0
   oooo		Plus		Easy		0		0
+  w		Plus		Easy		0		0
+  hh		Plus		Easy		3		1
+  ttt		Plus		Easy		7		1
+  fff		Plus		Hard		6		3
+  sf		Multiply		Easy		10		2
+  grgr		Plus		Easy		3		1
+  dfg		Plus		Easy		12		1
+  aloha		Plus		Easy		13		3
+  ff		Minus		Easy		2		0
+  pppp		Multiply		Easy		2		1
+  dd		Multiply		Easy		0		22

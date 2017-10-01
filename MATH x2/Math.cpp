@@ -5,6 +5,7 @@
 Math* Math::ptr = NULL;
 int Math::ls_true;
 int Math::ls_false;
+int Math::ls_time;
 TCHAR Math::ls_mode[100];
 TCHAR Math::ls_act[100];
 TCHAR Math::ls_name[100];
@@ -30,6 +31,8 @@ BOOL Math::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	hLS_true = GetDlgItem(hwnd, LS_TRUE);
 	hLS_false = GetDlgItem(hwnd, LS_FALSE);
 	hLS_act = GetDlgItem(hwnd, LS_ACT);
+	hLS_name = GetDlgItem(hwnd, LS_NAME);
+	hLS_play_time = GetDlgItem(hwnd, LS_TIME);
 	hName = GetDlgItem(hwnd, P_NAME);
 
 	SendMessage(hAct, CB_ADDSTRING, 0, (LPARAM)TEXT("Plus"));
@@ -86,8 +89,12 @@ void Math::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				_itot(ls_false, sign2, 10);
 				SetWindowText(hLS_false, sign2);
 
+				_itot(ls_time, sign2, 10);
+				SetWindowText(hLS_play_time, sign2);
+
 				SetWindowText(hLS_mode, ls_mode);
 				SetWindowText(hLS_act, ls_act);
+				SetWindowText(hLS_name, ls_name);
 
 				LoadFromFile();
 			}
