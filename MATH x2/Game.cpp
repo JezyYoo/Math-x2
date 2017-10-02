@@ -208,9 +208,11 @@ void Game::Cls_OnClose(HWND hwnd)
 	if (nCounter != 0)
 	{
 		KillTimer(hwnd, 1);
-		if (MessageBox(hwnd, 0, TEXT("Exit the game?"), MB_YESNO) == IDYES)
+		if (MessageBox(hwnd, TEXT("Exit the game?"), TEXT("Exit"), MB_YESNO) == IDYES)
 		{
 			EndDialog(hwnd, 0);
+			nCounter = prStep;
+			curSec = 0;
 		}
 		else
 		{
@@ -241,9 +243,11 @@ BOOL Game::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	SendMessage(hProgress, PBM_SETRANGE, 0, MAKELPARAM(0, prStep));
 	SendMessage(hProgress, PBM_SETSTEP, (WPARAM)1,0);
 	SendMessage(hProgress, PBM_SETBARCOLOR, 0, LPARAM(RGB(0, 255, 0)));
+	/*SendMessage(hProgress, PBS_SMOOTH, 0, 0);*/
 	SetTimer(hDialog, 1, 1000, 0);
 	nCounter = prStep;
 	total_play_time = prStep;
+	curSec = 0;
 
 	countOfTrue = 0;
 	countOfFalse = 0;
@@ -429,6 +433,7 @@ void Game::Cls_OnTimer(HWND hwnd, UINT id)
 				_tcscpy(m_dlg.ls_act, TEXT("Divide"));
 
 			SaveScore();
+
 		}
 	}
 	if (id == 2)

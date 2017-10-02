@@ -18,7 +18,7 @@ public:
 	int act,dificult;
 	int nCounter;
 	const int prStep = 30; // count of seconds
-	int curSec = 0;
+	int curSec;
 	int total_play_time;
 
 	void ePlus();

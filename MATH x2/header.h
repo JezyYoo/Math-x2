@@ -24,6 +24,7 @@ enum Dificult
 #include <commctrl.h>
 #include <fstream>
 #include <vector>
+#include <CommCtrl.h>
 using namespace std;
 
 #include "resource.h"
