@@ -85,6 +85,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Question.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scoreboard.h" />
   </ItemGroup>
@@ -95,6 +97,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Question.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

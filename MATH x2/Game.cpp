@@ -213,6 +213,7 @@ void Game::Cls_OnClose(HWND hwnd)
 			EndDialog(hwnd, 0);
 			nCounter = prStep;
 			curSec = 0;
+			m_dlg.finished = false;
 		}
 		else
 		{
@@ -387,6 +388,7 @@ void Game::Cls_OnTimer(HWND hwnd, UINT id)
 	if (id == 1)
 	{
 		SetFocus(hResult);
+		m_dlg.finished = true;
 		nCounter--;
 		curSec++;
 

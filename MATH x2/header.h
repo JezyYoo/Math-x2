@@ -28,9 +28,12 @@ enum Dificult
 using namespace std;
 
 #include "resource.h"
+#include "Menu.h"
 #include "Game.h"
 #include "Math.h"
 #include "Scoreboard.h"
+#include "Question.h"
+
 
 
 

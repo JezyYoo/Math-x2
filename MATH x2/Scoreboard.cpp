@@ -4,7 +4,7 @@
 
 Scoreboard* Scoreboard::ptr = NULL;
 HWND Scoreboard::hScoreboard;
-Math dlg;
+Menu dlg;
 TCHAR *buff;
 
 Scoreboard::Scoreboard(void)
