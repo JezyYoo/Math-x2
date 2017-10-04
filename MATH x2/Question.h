@@ -49,4 +49,5 @@ public:
 	void AddThreeSec();
 	void SecAnim();
 
+	void SaveScore();
 };

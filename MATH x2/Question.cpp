@@ -146,7 +146,7 @@ void Question::Cls_OnTimer(HWND hwnd, UINT id)
 			SetWindowText(hAns3, TEXT(""));
 			SetWindowText(hAns4, TEXT(""));
 
-			/*SaveScore();*/
+			SaveScore();
 
 		}
 	}
@@ -173,6 +173,20 @@ void Question::Cls_OnTimer(HWND hwnd, UINT id)
 			HANDLE_MSG(hwnd, WM_TIMER, ptr->Cls_OnTimer);
 		}
 		return FALSE;
+	}
+	PName name;
+	void Question::SaveScore()
+	{
+		wfstream fout("scoreboard2.txt", ios::out | ios::app);
+		fout.imbue(std::locale(""));
+		fout << "  ";
+		fout << name.p_name;
+		fout << "\t\t";
+		fout << countOfTrue;
+		fout << "\t\t";
+		fout << countOfFalse;
+		fout << "\n";
+		fout.close();
 	}
 
 	void Question::AddThreeSec()

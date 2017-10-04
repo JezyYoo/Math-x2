@@ -11,6 +11,8 @@ public:
 	BOOL Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam);
 	void Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify);
 	void Cls_OnClose(HWND hwnd);
-	HWND hDialog;
+	HWND hDialog,hClear,hSimple,hQuestion,hAct,hDif,hTrue,hFalse;
 	static HWND hScoreboard;
+	void LoadSimple();
+	void LoadQuestion();
 };

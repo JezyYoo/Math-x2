@@ -86,6 +86,7 @@
     <ClInclude Include="header.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="PName.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scoreboard.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="PName.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
   </ItemGroup>

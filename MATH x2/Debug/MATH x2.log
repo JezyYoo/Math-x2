@@ -1,28 +1,14 @@
-﻿Build started 03.10.2017 5:33:30.
+﻿Build started 05.10.2017 1:05:54.
      1>Project "D:\MATH-x2\MATH x2\MATH x2.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         D:\Visual Studio 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Question.cpp
-         Question.cpp
-     1>d:\math-x2\math x2\question.cpp(76): warning C4101: 'sign' : unreferenced local variable
-     1>d:\math-x2\math x2\question.cpp(321): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(322): warning C4101: 'tchislo' : unreferenced local variable
-     1>d:\math-x2\math x2\question.cpp(338): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(354): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(372): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(390): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(408): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(448): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(449): warning C4101: 'tchislo' : unreferenced local variable
-     1>d:\math-x2\math x2\question.cpp(467): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(485): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(502): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>d:\math-x2\math x2\question.cpp(520): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\Win32Project1.res" Win32Project1.rc 
        Link:
          D:\Visual Studio 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\MATH-x2\Debug\MATH x2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\MATH-x2\Debug\MATH x2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\MATH-x2\Debug\MATH x2.lib" /MACHINE:X86 Debug\Win32Project1.res
          Debug\Game.obj
          Debug\main.obj
          Debug\Math.obj
          Debug\Menu.obj
+         Debug\PName.obj
          Debug\Question.obj
          Debug\Scoreboard.obj
          MATH x2.vcxproj -> D:\MATH-x2\Debug\MATH x2.exe
@@ -30,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.57
+Time Elapsed 00:00:00.86

@@ -33,6 +33,7 @@ using namespace std;
 #include "Math.h"
 #include "Scoreboard.h"
 #include "Question.h"
+#include "PName.h"
 
 
 

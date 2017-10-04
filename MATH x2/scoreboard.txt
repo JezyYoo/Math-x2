@@ -1,11 +1,1 @@
-  Danya		Plus		Easy		2		0
-  Danya		Plus		Hard		0		0
-  Danya		Plus		Hard		0		0
-  few		Plus		Easy		1		0
-  geg		Plus		Easy		1		1
-  DAnya		Plus		Easy		8		2
-  gfdd		Minus		Easy		4		2
-  aaaa		Plus		Easy		0		1
-  eee		Minus		Hard		0		0
-  aleha		Plus		Easy		2		0
-  6y		Plus		Easy		3		0
+  hyh		Plus		Easy		0		0

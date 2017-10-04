@@ -15,5 +15,7 @@ public:
 	void Cls_OnClose(HWND hwnd);
 	HWND hDialog,hSimple,hQuestion,hGuide,hScore,hExit;
 	static void LoadFromFile();
+	static void LoadFromFile2();
 	static vector<wstring> score;
+	static vector<wstring> score2;
 };
